@@ -2,3 +2,4 @@ node_modules
 storage/img-graphs/*.svg
 storage/sar-archive/sar-*
 package-lock.json
+docker-compose.override.yml

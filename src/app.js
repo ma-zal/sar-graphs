@@ -49,14 +49,13 @@ async function generateGraphs() {
                 console.log("Converting SAR file by:", command);
                 const run = exec(command, function(err, stdout, stderr) {
                     if (err) {
-                        console.error(err);
+                        console.error('EXEC ERROR:');
+                        console.error('-----------');
+                        console.error('Exit code:', err.code);
+                        console.error(err.message);
                     }
                 });
-                run.on('exit', function (code) {
-                    // exit code is code
-                    if (code !== 0) {
-                        console.error(`Exec failed with exit code ${code}`);
-                    }
+                run.on('exit', function (ignore_code) {
                     resolve();
                 });
             });
@@ -76,14 +75,13 @@ async function generateGraphs() {
                 console.log("Generating SVG by:", command);
                 const run = exec(command, function(err, stdout, stderr) {
                     if (err) {
-                        console.error(err);
+                        console.error('EXEC ERROR:');
+                        console.error('-----------');
+                        console.error('Exit code:', err.code);
+                        console.error(err.message);
                     }
                 });
-                run.on('exit', function (code) {
-                    // exit code is code
-                    if (code !== 0) {
-                        console.error(`Exec failed with exit code ${code}`);
-                    }
+                run.on('exit', function (ignore_code) {
                     resolve();
                 });
             });
