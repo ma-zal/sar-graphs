@@ -16,9 +16,12 @@ RUN mkdir -p /app/public
 # Build app
 WORKDIR /app
 # Copy app src to /app-src
-COPY src/ /app
+COPY src/package.json /app/package.json
 # Run build && copy dist to final directory
 RUN npm install
+
+# Copy app src to /app
+COPY src/ /app
 
 
 # Run app

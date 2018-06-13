@@ -12,6 +12,7 @@ services:
       HTTP_PROXY: ${HTTP_PROXY}   # pass any variable from host shell
       HTTPS_PROXY: ${HTTPS_PROXY} # pass any variable from host shell
       NO_PROXY: ${NO_PROXY}       # pass any variable from host shell
+      TZ: ${TZ}
 
     # expose port to host
     ports:

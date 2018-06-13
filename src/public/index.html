@@ -11,12 +11,13 @@
              style="text-align: center;">
             <h1>Server Statistics</h1>
 
-            <button type="button" ng-click="$ctrl.changeDate(-1)">&lt;</button>
-            <input type="date" ng-model="$ctrl.date" />
-            <button type="button" ng-click="$ctrl.changeDate(1)">&gt; </button>
-            <hr />
+            <div>
+                <button type="button" ng-click="$ctrl.changeDate(-1)">&lt;</button>
+                <input type="date" ng-model="$ctrl.date" />
+                <button type="button" ng-click="$ctrl.changeDate(1)">&gt; </button>
+            </div>
 
-            <img src="" ng-src="graph-{{$ctrl.date.toISOString().substring(0,10)}}.svg" alt="graph" />
+            <img src="" ng-src="img-graphs/graph-{{$ctrl.date.toISOString().substring(0,10)}}.svg" alt="graph" />
         </div>
 
 
