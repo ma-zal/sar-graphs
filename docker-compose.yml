@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  app:
+    networks:
+      - default
+    image: sar-graphs:${APP_REVISION:-latest}
+    environment:
+      http_proxy: ${http_proxy}   # pass any variable from host shell
+      https_proxy: ${https_proxy} # pass any variable from host shell
+      no_proxy: ${no_proxy}       # pass any variable from host shell
+      HTTP_PROXY: ${HTTP_PROXY}   # pass any variable from host shell
+      HTTPS_PROXY: ${HTTPS_PROXY} # pass any variable from host shell
+      NO_PROXY: ${NO_PROXY}       # pass any variable from host shell
+
+    # expose port to host
+    ports:
+      - 1080:1080
+
+    # mount sources from host
+    volumes:
+      - /var/log/sa:/var-log-sa
+      - ./storage:/storage
+
+    build:
+      context: .
+      args:
+        http_proxy: ${http_proxy}   # pass any variable from host shell
+        https_proxy: ${https_proxy} # pass any variable from host shell
+        no_proxy: ${no_proxy}       # pass any variable from host shell
+        HTTP_PROXY: ${HTTP_PROXY}   # pass any variable from host shell
+        HTTPS_PROXY: ${HTTPS_PROXY} # pass any variable from host shell
+        NO_PROXY: ${NO_PROXY}       # pass any variable from host shell
+
+networks:
+  default:
+    driver: bridge

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Server Statistics</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    </head>
+    <body>
+        <div ng-app="app" ng-controller="mainController as $ctrl"
+             style="text-align: center;">
+            <h1>Server Statistics</h1>
+
+            <button type="button" ng-click="$ctrl.changeDate(-1)">&lt;</button>
+            <input type="date" ng-model="$ctrl.date" />
+            <button type="button" ng-click="$ctrl.changeDate(1)">&gt; </button>
+            <hr />
+
+            <img src="" ng-src="graph-{{$ctrl.date.toISOString().substring(0,10)}}.svg" alt="graph" />
+        </div>
+
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular.min.js"></script>
+
+        <script type="text/javascript">
+            angular.module('app', []).controller('mainController', function() {
+                var $ctrl = this;
+                
+                $ctrl.date = new Date();
+
+                $ctrl.changeDate = function(offset) {
+                    $ctrl.date.setDate($ctrl.date.getDate() + offset);
+
+                    $ctrl.date = new Date($ctrl.date);
+                };
+            });
+        </script>
+    </body>
+</html>
