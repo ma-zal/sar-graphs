@@ -17,13 +17,23 @@ const app = express();
 app.use('/img-graphs', express.static(GRAPHS_DIR));
 app.use('/', express.static('public'));
 
-app.listen(1080, () => console.log('App listening on port 1080!'));
+const server = app.listen(1080, () => console.log('App listening on port 1080!'));
 
  generateGraphs();
 const intervalId = setInterval(() => {
     generateGraphs();
 }, 600000);
-process.on('SIGTERM', () => { clearInterval(intervalId); console.log('Stopping app,'); });
+process.on('SIGTERM', () => {
+    console.log('Stopping app...');
+    clearInterval(intervalId);
+    server.close((err) => {
+        if (err) {
+            console.error('Express server closing error:', err.message);
+        } else {
+            console.log('Express server closed.');
+        }
+    });
+});
 
 async function generateGraphs() {
     // Process files of last 28 days
