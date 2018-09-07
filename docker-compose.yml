@@ -5,6 +5,7 @@ services:
     networks:
       - default
     image: sar-graphs:${APP_REVISION:-latest}
+    restart: unless-stopped
     environment:
       http_proxy: ${http_proxy}   # pass any variable from host shell
       https_proxy: ${https_proxy} # pass any variable from host shell
